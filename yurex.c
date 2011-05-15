@@ -1,7 +1,7 @@
 /*
- * $Id$
+ * $Id: yurex.c,v 8b1dcd2a04a0 2010/12/07 15:53:48 toyoshim $
  *
- * Copyright (c) 2010 Takashi TOYOSHIMA <toyoshim@gmail.com>
+ * Copyright (c) 2011 Takashi TOYOSHIMA <toyoshim@gmail.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -47,7 +47,7 @@ static const char *kDeviceName = "misc/" DRIVER_NAME "/%08ld/%s";
 static usb_support_descriptor sSupportedDevices[1] = {
 	{
 		USB_HID_DEVICE_CLASS,			// Class
-		USB_HID_INTERFACE_BOOT_SUBCLASS,	// Subclass
+		B_USB_HID_INTERFACE_BOOT_SUBCLASS,	// Subclass
 		0,					// Protocol
 		USB_VENDOR_MICRODIA,			// Vendor ID
 		USB_PRODUCT_MICRODIA_YUREX		// Product ID
@@ -177,7 +177,7 @@ yurex_set_mode
 	result = gUsb->send_request(dev->udev,
 		USB_REQTYPE_INTERFACE_OUT |
 		USB_REQTYPE_CLASS,
-		USB_REQUEST_HID_SET_REPORT,
+		B_USB_REQUEST_HID_SET_REPORT,
 		2 << 8, // Output Report
 		dev->ifno,
 		8,
@@ -200,7 +200,7 @@ yurex_read_bbu
 	result = gUsb->send_request(dev->udev,
 		USB_REQTYPE_INTERFACE_OUT |
 		USB_REQTYPE_CLASS,
-		USB_REQUEST_HID_SET_REPORT,
+		B_USB_REQUEST_HID_SET_REPORT,
 		2 << 8, // Output Report
 		dev->ifno,
 		8,
@@ -228,7 +228,7 @@ yurex_write_bbu
 	result = gUsb->send_request(dev->udev,
 		USB_REQTYPE_INTERFACE_OUT |
 		USB_REQTYPE_CLASS,
-		USB_REQUEST_HID_SET_REPORT,
+		B_USB_REQUEST_HID_SET_REPORT,
 		2 << 8, // Output Report
 		dev->ifno,
 		8,
